@@ -1,13 +1,26 @@
-import { city } from './index';
 export class App {
     opwApiKey='b5a7d2e16150cb009fef3c81f7c6cf80';
+    city: HTMLInputElement;
+    cityName: string;
+    
+    
     constructor(){
-        this.getCityInfo(this.city);
+        this.start();
     }
 
-    async getCityInfo(city: string){
+    start(){
+        document.getElementById('button').addEventListener('click', this.getCityName);
+    }
+
+    getCityName(){
+        this.city = <HTMLInputElement>document.getElementById('input');
+        this.cityName=String(this.city);
+        this.saveData(this.cityName);
+        this.getCityInfo(this.cityName);
+    }
+
+    async getCityInfo(city: string): Promise<any>{
         const weather = await this.getWeather(city);
-        this.saveData(weather);
     }
 
     async getWeather(city: string): Promise<any>{
@@ -19,15 +32,19 @@ export class App {
     }
 
     saveData(data: any){
-        localStorage.setItem('weatherData', JSON.stringify(data));
+        localStorage.setItem('cityName', data);
     }
 
     getData(){
-        const data = localStorage.getItem('weatherData');
+        const data = localStorage.getItem('cityName');
         if (data){
-            return JSON.parse(data);
+            return data;
         } else {
             return {};
         }
     }
+
+
 }
+
+const app=new App();

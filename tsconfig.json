@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es6",                              
+    "module": "commonjs",
+    "lib": ["ES2015",
+            "dom",
+          "ES2015.Promise"],
+    "sourceMap": true,                         
+    "strict": false,                                
+    "noImplicitAny": true,                      
+    "strictPropertyInitialization": false,        
+    "esModuleInterop": false,                        
+    "skipLibCheck": true,                           
+    "forceConsistentCasingInFileNames": true        
+  },
+  "include": [
+     "index.ts", 
+     "App.ts"  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
